@@ -10,10 +10,12 @@ router.get('', function(req, res) {
 
 router.get('/:productId', function(req, res) {
     const productId = req.params.productId
+
     Product.findById(productId, function(err, foundProject){
-        if (err) {
+        if(err) {
             return res.status(422).send({ erros: [{title: 'Product error', detail: 'Product not found!'}] })
         }
+        
         return res.json(foundProject)
     })
 })
